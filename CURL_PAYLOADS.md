@@ -44,7 +44,7 @@ All multi-step endpoints (returns, hybrid, retirement-income, report, alternativ
 - **Q period** (Jul 2023): vacation month → fixed ₹50 (overrides the ₹53 natural remanent on flight tickets)
 - **P period** (Oct–Dec 2023): Diwali + year-end bonus season → +₹200 extra per transaction
 - **K period 1** (H1 2023: Jan–Jun): 12 transactions, total remanent ≈ ₹492
-- **K period 2** (H2 2023: Jul–Dec): 11 transactions, total remanent ≈ ₹1,566 (with P bonuses)
+- **K period 2** (H2 2023: Jul–Dec): 11 transactions, total remanent ≈ ₹1,766 (with P bonuses)
 
 ---
 
