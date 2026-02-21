@@ -317,8 +317,8 @@ Routing savings through NPS until the ₹2,00,000 Section 80CCD(1B) deduction ca
 **Why PFRDA annuity + Bengen SWR for retirement income?**  
 PFRDA mandates 40% of NPS corpus as annuity at retirement. The remaining 60% + full Index corpus uses the 4% Safe Withdrawal Rate (Bengen/Trinity Study), which has survived every 30-year US/IN market cycle since 1926.
 
-**Why iText for the PDF report?**  
-iText 7 is the industry standard for programmatic PDF generation in Java (used by banks, insurance companies, fintech). It supports tables, charts, and Unicode — essential for ₹ symbols. The 5-page report covers KPI dashboard, NPS/Index projections, hybrid allocation, retirement income, and a full alternative-investment comparison with bar chart.
+**Why OpenPDF for the PDF report?**  
+OpenPDF is a LGPL-licensed open-source fork of iText 4, widely used for programmatic PDF generation in Java fintech applications. It supports tables, charts, and Unicode — essential for ₹ symbols. The 5-page report covers KPI dashboard, NPS/Index projections, hybrid allocation, retirement income, and a full alternative-investment comparison with bar chart.
 
 ---
 
@@ -355,7 +355,7 @@ blackrock-challenge/
 │   │   │   ├── HybridAllocationService.java   ← BONUS: NPS cap routing + overflow
 │   │   │   ├── RetirementIncomeService.java   ← BONUS: annuity + SWR income bridge
 │   │   │   ├── AlternativeInvestmentService.java ← BONUS: Gold/Silver/Bonds/REITs rates
-│   │   │   └── ReportService.java             ← BONUS: 5-page PDF with iText
+│   │   │   └── ReportService.java             ← BONUS: 5-page PDF with OpenPDF
 │   │   └── util/
 │   │       ├── IntervalTree.java
 │   │       └── DateTimeUtil.java
