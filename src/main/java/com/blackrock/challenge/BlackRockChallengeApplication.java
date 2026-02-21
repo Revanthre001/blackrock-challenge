@@ -47,7 +47,6 @@ public class BlackRockChallengeApplication implements ApplicationRunner {
         log.info("║   Port: 5477                                             ║");
         log.info("║   Swagger: http://localhost:5477/swagger-ui/index.html   ║");
         log.info("║   API Docs: http://localhost:5477/v3/api-docs            ║");
-        log.info("║   Report:  POST /blackrock/challenge/v1/returns:report   ║");
         log.info("╚══════════════════════════════════════════════════════════╝");
     }
 }
