@@ -1,0 +1,39 @@
+name: blackrock-retirement-api
+
+# Docker Compose configuration for the BlackRock Retirement Auto-Savings API.
+# Run with: docker compose -f compose.yaml up --build
+# Stop with: docker compose -f compose.yaml down
+
+services:
+  blackrock-api:
+    # Image naming convention: blk-hacking-ind-{name-lastname}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blk-hacking-ind-challenge
+    container_name: blackrock-retirement-api
+    ports:
+      - "5477:5477"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - SERVER_PORT=5477
+      - JAVA_OPTS=-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget --quiet --tries=1 --spider http://localhost:5477/blackrock/challenge/v1/performance || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+        reservations:
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
