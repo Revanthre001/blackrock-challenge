@@ -28,9 +28,9 @@ public class SwaggerConfig {
     private String serverPort;
 
     // ── Submission Links ──────────────────────────────────────────────────────
-    // GitHub   : https://github.com/YOUR_USERNAME/YOUR_REPO
-    // Docker   : https://hub.docker.com/r/YOUR_USERNAME/blackrock-challenge
-    // Video    : https://YOUR_VIDEO_LINK_HERE
+    // GitHub   : https://github.com/Revanthre001/blackrock-challenge
+    // Docker   : https://hub.docker.com/r/revanthreddymedepati/blackrock-challenge
+    // Video    : https://YOUR_VIDEO_LINK_HERE  ← update after recording
     // ─────────────────────────────────────────────────────────────────────────
 
     @Bean
@@ -93,7 +93,7 @@ public class SwaggerConfig {
                                 .email("hackathon@blackrock.com"))
                         .license(new License()
                                 .name("View on GitHub")
-                                .url("https://github.com/YOUR_USERNAME/YOUR_REPO")))
+                                .url("https://github.com/Revanthre001/blackrock-challenge")))
                 .externalDocs(new ExternalDocumentation()
                         .description("HackerRank — BlackRock HackingIndia 2026")
                         .url("https://www.hackerrank.com/event/blackrock-hackingindia2026"))

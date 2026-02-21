@@ -11,7 +11,7 @@
 |----------|------|
 | 🏆 Hackathon | [HackerRank — BlackRock HackingIndia 2026](https://www.hackerrank.com/event/blackrock-hackingindia2026) |
 | 💻 GitHub | `https://github.com/YOUR_USERNAME/YOUR_REPO` |
-| 🐳 Docker Hub | `https://hub.docker.com/r/YOUR_USERNAME/blackrock-challenge` |
+| 🐳 Docker Hub | `https://hub.docker.com/r/revanthreddymedepati/blackrock-challenge` |
 | 🎬 Demo Video | `https://YOUR_VIDEO_LINK_HERE` |
 
 ---
@@ -87,6 +87,9 @@
 ### Option 1: Docker (Recommended)
 
 ```bash
+# Pull from Docker Hub
+docker pull revanthreddymedepati/blackrock-challenge:latest
+
 # Build the Docker image
 docker build -t blk-hacking-ind-challenge .
 
