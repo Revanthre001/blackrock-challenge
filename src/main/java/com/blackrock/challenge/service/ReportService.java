@@ -1199,6 +1199,7 @@ public class ReportService {
 
         // ── Horizontal Bar Chart ──────────────────────────────────────────────
         addSectionTitle(doc, "Corpus Comparison — Bar Chart");
+        spacer(doc);   // gap between heading and first bar (fixes heading/NPS overlap)
 
         PdfContentByte cb     = writer.getDirectContent();
         float          pageW  = doc.getPageSize().getWidth() - doc.leftMargin() - doc.rightMargin();
@@ -1206,8 +1207,6 @@ public class ReportService {
         float          gap    = 6f;
         float          labelW = 120f;
         float          chartW = pageW - labelW - 60f;
-        float          startX = doc.leftMargin() + labelW;
-        float          startY = writer.getVerticalPosition(false) - 10f;
 
         String[] labels     = {"NPS", "NIFTY 50", "Gold (SGB)", "Silver", "GOI Bonds", "REITs"};
         double[] corpuses   = {alts.getNps().getRealCorpus(), alts.getIndexFund().getRealCorpus(),
@@ -1217,34 +1216,40 @@ public class ReportService {
                                 new Color(160, 160, 160), new Color(80, 80, 200),
                                 new Color(0, 140, 100)};
 
+        // Use a PdfTemplate so document flow reserves the exact chart height
+        // (fixes REITs / Diversified Portfolio overlap — no "\n" hacks needed)
+        float       chartH = labels.length * (barH + gap) + 20f;   // 164 pt for 6 bars
+        PdfTemplate tpl    = cb.createTemplate(pageW, chartH);
+
         for (int i = 0; i < labels.length; i++) {
-            float y = startY - i * (barH + gap);
+            float y = chartH - 15f - i * (barH + gap);  // top-to-bottom within template
 
             // Label
-            cb.beginText();
-            cb.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, false), 8);
-            cb.setColorFill(COLOR_DARK);
-            cb.setTextMatrix(doc.leftMargin(), y + 4);
-            cb.showText(labels[i]);
-            cb.endText();
+            tpl.beginText();
+            tpl.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, false), 8);
+            tpl.setColorFill(COLOR_DARK);
+            tpl.setTextMatrix(0, y + 4);
+            tpl.showText(labels[i]);
+            tpl.endText();
 
             // Bar
             float barLen = maxCorpus > 0 ? (float) (corpuses[i] / maxCorpus * chartW) : 0;
-            cb.setColorFill(barColors[i]);
-            cb.rectangle(startX, y, barLen, barH);
-            cb.fill();
+            tpl.setColorFill(barColors[i]);
+            tpl.rectangle(labelW, y, barLen, barH);
+            tpl.fill();
 
             // Value label
-            cb.beginText();
-            cb.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, false), 7);
-            cb.setColorFill(COLOR_DARK);
-            cb.setTextMatrix(startX + barLen + 3, y + 5);
-            cb.showText(String.format("₹%.0f", corpuses[i]));
-            cb.endText();
+            tpl.beginText();
+            tpl.setFontAndSize(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, false), 7);
+            tpl.setColorFill(COLOR_DARK);
+            tpl.setTextMatrix(labelW + barLen + 3, y + 5);
+            tpl.showText(String.format("₹%.0f", corpuses[i]));
+            tpl.endText();
         }
 
-        // Reserve vertical space for the chart
-        doc.add(new Paragraph(" \n".repeat(Math.max(1, labels.length)) + " ", normalFont()));
+        Image img = Image.getInstance(tpl);
+        img.setAlignment(Element.ALIGN_LEFT);
+        doc.add(img);   // document flow now knows the exact chart height
         spacer(doc);
 
         // ── Diversified Portfolio Suggestion ─────────────────────────────────
