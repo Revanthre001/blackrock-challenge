@@ -12,7 +12,7 @@
 | 🏆 Hackathon | [HackerRank — BlackRock HackingIndia 2026](https://www.hackerrank.com/event/blackrock-hackingindia2026) |
 | 💻 GitHub | [Revanthre001/blackrock-challenge](https://github.com/Revanthre001/blackrock-challenge) |
 | 🐳 Docker Hub | [revanthreddymedepati/blackrock-challenge](https://hub.docker.com/r/revanthreddymedepati/blackrock-challenge) |
-| 🎬 Demo Video | `https://YOUR_VIDEO_LINK_HERE` |
+| 🎬 Demo Video | `https://youtu.be/gRFXJ0im5Lc?si=AsR1CkHzcSm0C46w` |
 
 ---
 
